@@ -9,11 +9,15 @@ export default (
   if (targetOptions.target === 'server') {
     config.target = 'node';
     config.externalsPresets = { node: true };
-    config.resolve!.extensions!.push('.mjs');
+
+    config.output!.libraryTarget = undefined;
+    config.output!.library = {
+      type: 'commonjs2'
+    };
 
     (config.externals as Array<any>).push(
-      { 'node:os': {} },
-      /node:os/
+      { 'node:os': 'commonjs2 os' },
+      { 'node.os': 'commonjs2 os' }
     );
 
     config.module!.rules!.push(
@@ -35,7 +39,8 @@ export default (
             'ts-morph',
             'supertest',
             'formidable',
-            'class-transformer/storage'
+            'class-transformer/storage',
+            'node:os'
           ];
 
           if(!lazyImpots.includes(resource)) {
@@ -52,9 +57,9 @@ export default (
         }
       })
     );
-  }
 
-  console.log(config.externals);
+    console.log(config);
+  }
 
   return config;
 }
