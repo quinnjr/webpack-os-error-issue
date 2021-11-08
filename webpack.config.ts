@@ -1,6 +1,5 @@
 import { Configuration, IgnorePlugin } from 'webpack';
 import { CustomWebpackBrowserSchema, TargetOptions } from '@angular-builders/custom-webpack';
-import { WebpackConfigDumpPlugin } from 'webpack-config-dump-plugin';
 
 export default (
   config: Configuration,
@@ -12,7 +11,10 @@ export default (
     config.externalsPresets = { node: true };
     config.resolve!.extensions!.push('.mjs');
 
-    (config.externals as Array<any>).push({ 'node:os' : {} });
+    (config.externals as Array<any>).push(
+      { 'node:os': {} },
+      /node:os/
+    );
 
     config.module!.rules!.push(
       {
@@ -22,7 +24,6 @@ export default (
     );
 
     config.plugins!.push(
-      new WebpackConfigDumpPlugin(),
       new IgnorePlugin({
         checkResource: (resource, string) => {
           const lazyImpots = [
