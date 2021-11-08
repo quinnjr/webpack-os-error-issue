@@ -39,6 +39,7 @@ specifiers:
   rxjs: ~7.4.0
   tslib: ^2.3.1
   typescript: ~4.3.5
+  webpack-config-dump-plugin: ^3.0.1
   zone.js: ~0.11.4
 
 dependencies:
@@ -83,6 +84,7 @@ devDependencies:
   karma-jasmine-html-reporter: 1.7.0_498d5ee434a563465695685f16eac076
   prisma: 3.4.1
   typescript: 4.3.5
+  webpack-config-dump-plugin: 3.0.1
 
 packages:
 
@@ -6188,6 +6190,11 @@ packages:
     engines: {node: '>= 0.6.0'}
     dev: true
 
+  /loglevelnext/3.0.1:
+    resolution: {integrity: sha512-JpjaJhIN1reaSb26SIxDGtE0uc67gPl19OMVHrr+Ggt6b/Vy60jmCtKgQBrygAH0bhRA2nkxgDvM+8QvR8r0YA==}
+    engines: {node: '>= 6.14.4'}
+    dev: true
+
   /lru-cache/6.0.0:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
     engines: {node: '>=10'}
@@ -6538,6 +6545,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /nanoid/2.1.11:
+    resolution: {integrity: sha512-s/snB+WGm6uwi0WjsZdaVcuf3KJXlfGl2LcxgwkEwJF0D/BWzVWAZW/XY4bFaiR7s0Jk3FPvlnepg1H1b1UwlA==}
+    dev: true
 
   /nanoid/3.1.30:
     resolution: {integrity: sha512-zJpuPDwOv8D2zq2WRoMe1HsfZthVewpel9CAvTfc/2mBD1uUT/agc5f7GHGWXlYkFvi1mVxe4IjvP2HNrop7nQ==}
@@ -9498,6 +9509,13 @@ packages:
     resolution: {integrity: sha512-qBIvFLGiBpLjfwmYAaHPXsn+ho5xZnGvyGvsarywGNc8VyQJUMHJ8OBKGGrPER0okBeMDaan4mNBlgBROxuI8w==}
     engines: {node: '>=10.4'}
 
+  /webpack-config-dump-plugin/3.0.1:
+    resolution: {integrity: sha512-0hJe5EOAQFZcuFKSIyhVFxPMdyvRyRQJTPhkonnBstGgqA7my1OfoY45er6NtvPL7CPHlI9k9JWN31JXcU26/w==}
+    dependencies:
+      lodash: 4.17.21
+      webpack-log: 3.0.2
+    dev: true
+
   /webpack-dev-middleware/3.7.3_webpack@5.50.0:
     resolution: {integrity: sha512-djelc/zGiz9nZj/U7PTBi2ViorGJXEWo/3ltkPbDyxCXhhEXkW0ce99falaok4TPj+AsxLiXJR0EBOb0zh9fKQ==}
     engines: {node: '>= 6'}
@@ -9580,6 +9598,15 @@ packages:
     dependencies:
       ansi-colors: 3.2.4
       uuid: 3.4.0
+    dev: true
+
+  /webpack-log/3.0.2:
+    resolution: {integrity: sha512-ijm2zgqTY2omtlxRNrtDqxAQOrfAGMxWg9fQB/kuFSeZjx/OkYnfYLqsjf/JkrWOHINMzqxaJDXaog6Mx9KaHg==}
+    engines: {node: '>= 8.0.0'}
+    dependencies:
+      chalk: 2.4.2
+      loglevelnext: 3.0.1
+      nanoid: 2.1.11
     dev: true
 
   /webpack-merge/5.8.0:

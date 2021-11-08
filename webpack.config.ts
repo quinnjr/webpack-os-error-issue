@@ -1,5 +1,6 @@
 import { Configuration, IgnorePlugin } from 'webpack';
 import { CustomWebpackBrowserSchema, TargetOptions } from '@angular-builders/custom-webpack';
+import { WebpackConfigDumpPlugin } from 'webpack-config-dump-plugin';
 
 export default (
   config: Configuration,
@@ -9,29 +10,11 @@ export default (
   if (targetOptions.target === 'server') {
     config.target = 'node';
     config.externalsPresets = { node: true };
-    config.resolve!.extensions!.push('.mjs')
+    config.resolve!.extensions!.push('.mjs');
+
+    (config.externals as Array<any>).push({ 'node:os' : {} });
 
     config.module!.rules!.push(
-      {
-        test: /\.m?js$/,
-        use: 'babel-loader',
-        include: /node_modules/,
-        type: 'javascript/auto',
-        options: {
-          presets: [
-            [
-              "@babel/preset-env",
-              {
-                modules: true
-              }
-            ]
-          ],
-          plugins: [
-            '@babel/plugin-transform-runtime',
-            '@babel/plugin-transform-modules-commonjs'
-          ]
-        }
-      },
       {
         test: /\.node$/,
         loader: 'node-loader'
@@ -39,6 +22,7 @@ export default (
     );
 
     config.plugins!.push(
+      new WebpackConfigDumpPlugin(),
       new IgnorePlugin({
         checkResource: (resource, string) => {
           const lazyImpots = [
@@ -68,4 +52,8 @@ export default (
       })
     );
   }
+
+  console.log(config.externals);
+
+  return config;
 }
